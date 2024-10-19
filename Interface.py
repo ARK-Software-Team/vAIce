@@ -40,12 +40,12 @@ class AudioHistogramApp:
 
         # Time serisi grafiği (Amplitude)
         self.ax1.set_title("Amplitude - Time Graph")
-        self.ax1.set_xlabel("Time (sec)")
+        self.ax1.set_xlabel("Time")
         self.ax1.set_ylabel("Amplitude")
 
         # Frequency spektrumu grafiği (Spectrogram)
         self.ax2.set_title("Frequency Spectrogram - Color Histogram")
-        self.ax2.set_xlabel("Time (sec)")
+        self.ax2.set_xlabel("Time")
         self.ax2.set_ylabel("Frequency (Hz)")
 
         # Matplotlib'i tkinter canvas içine ekle
@@ -114,23 +114,23 @@ class AudioHistogramApp:
         self.ax1.clear()
         self.ax1.plot(times, self.audio_data)
         self.ax1.set_title("Amplitude - Time Serisi")
-        self.ax1.set_xlabel("Time (sec)")
+        self.ax1.set_xlabel("Time")
         self.ax1.set_ylabel("Amplitude")
         self.ax1.set_xlim(0, max(10, current_time))
 
-        S = librosa.stft(self.audio_data)
-        S_db = librosa.amplitude_to_db(np.abs(S), ref=np.max)
+        s_data = librosa.stft(self.audio_data)
+        s_database = librosa.amplitude_to_db(np.abs(s_data), ref=np.max)
 
         self.ax2.clear()
         img = self.ax2.imshow(
-            S_db,
+            s_database,
             aspect="auto",
             cmap="plasma",
             origin="lower",
             extent=[0, current_time, 0, self.sample_rate / 2],
         )
         self.ax2.set_title("Frequency Spektrumu - Renk Histogrami")
-        self.ax2.set_xlabel("Time (sec)")
+        self.ax2.set_xlabel("Time")
         self.ax2.set_ylabel("Frequency (Hz)")
         self.ax2.set_xlim(0, max(10, current_time))
 

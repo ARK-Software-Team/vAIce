@@ -20,7 +20,7 @@ def process_audio(input_wav, output_no_silence_wav, chunks_output_dir):
     threshold = 0.03  # Enerji eşiği (ayarlanabilir)
 
     # Sessiz kisimlar
-    non_silent_indices = np.where(energy > threshold)[0]
+    non_silent_indices = np.nonzero(energy > threshold)[0]
 
     # Başlangiç ve bitiş indekslerini bul
     if len(non_silent_indices) > 0:  # Eğer sessiz kisimlar yoksa
